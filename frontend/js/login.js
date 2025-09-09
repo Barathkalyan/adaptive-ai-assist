@@ -24,12 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
   Object.keys(buttons).forEach(id => {
     document.getElementById(id).addEventListener('click', () => {
       accessibilityMode = buttons[id];
-      document.getElementById('phone-input').value = '';
-      document.getElementById('phone-input').focus();
+      const inputField = document.getElementById('phone-input');
+      inputField.value = '';
+      inputField.focus();
 
       if (accessibilityMode === 'blind' && !voiceActive) {
         speak('Blind mode activated. Please speak your phone number after the beep.');
-        startVoiceInput();
+        setTimeout(() => startVoiceInput(inputField), 500); // small delay ensures input is ready
       }
       if (accessibilityMode === 'deaf') navigator.vibrate?.([200,100,200]);
     });
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     const keyMap = { '1':'blind-mode', '2':'deaf-mode', '3':'mute-mode', '4':'multiple-mode' };
     if (keyMap[e.key]) {
-      e.preventDefault();
+      e.preventDefault(); // prevent key from entering input
       document.getElementById(keyMap[e.key]).click();
     }
     if (e.key === 'Enter' && document.activeElement === document.getElementById('phone-input')) {
@@ -69,15 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Voice input with full commands for blind users
-  function startVoiceInput() {
+  // Voice input for blind users
+  function startVoiceInput(inputField) {
     if (!('webkitSpeechRecognition' in window)) {
       speak('Voice input not supported in this browser.');
       return;
     }
 
     voiceActive = true;
-    const inputField = document.getElementById('phone-input');
 
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     recognition.onresult = (event) => {
       let transcript = event.results[0][0].transcript.toLowerCase();
+
       if (transcript.includes('repeat')) {
         inputField.value = '';
         speak('Okay, please speak your phone number again.');
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Otherwise, assume it's digits
       const digits = wordsToDigits(transcript);
       if (!digits) {
         speak('No digits detected. Please try again.');
@@ -113,8 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      inputField.value = digits;
-      speak(`You entered: ${numberToWords(digits)}. Press Enter to continue, or say repeat to try again.`);
+      // Ensure inputField updates after recognition
+      setTimeout(() => {
+        inputField.value = digits;
+        speak(`You entered: ${numberToWords(digits)}. Press Enter to continue or say repeat to try again.`);
+      }, 100);
     };
 
     recognition.onerror = (event) => {
@@ -123,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     recognition.onend = () => {
-      voiceActive = false; // allow restart if needed
+      voiceActive = false;
     };
 
     recognition.start();
