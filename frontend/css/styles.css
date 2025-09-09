@@ -1,0 +1,193 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px;
+  line-height: 1.5;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a2a 100%);
+  padding: 20px 0;
+  border-bottom: 2px solid #ff2e63;
+}
+
+.logo {
+  width: 120px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 20px 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+/* Sections */
+section {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 50px;
+}
+
+/* Instructions paragraph */
+.instructions {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #ddd;
+  text-align: center;
+}
+
+/* Accessibility Buttons */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.access-button {
+  background-color: #ff2e63;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.access-button:hover,
+.access-button:focus {
+  background-color: cyan;
+  outline: 4px solid #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+.access-button .icon {
+  font-size: 2rem;
+}
+
+/* Login Form Buttons */
+.action-button {
+  background-color: cyan;
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.action-button:hover,
+.action-button:focus {
+  background-color: #ff2e63;
+  outline: 4px solid #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 46, 99, 0.3);
+}
+
+/* Login Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Phone Input Field */
+#phone-input {
+  font-size: 1.8rem;
+  padding: 15px;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  background-color: #222;
+  color: #fff;
+}
+
+#phone-input:focus {
+  outline: 4px solid cyan;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Captions for Deaf Users */
+.captions {
+  font-size: 1.4rem;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Info Section */
+ul {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  padding-left: 25px;
+}
+
+/* TTS placeholder styling */
+#tts {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  .access-button, .action-button, #phone-input {
+    font-size: 1.4rem;
+    padding: 15px;
+  }
+  .instructions, .captions, ul {
+    font-size: 1.2rem;
+  }
+  .logo {
+    width: 100px;
+  }
+}

@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adaptive AI – Login & Accessibility Setup</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <img src="assets/logo.png" alt="Adaptive AI Logo" class="logo">
+    <img src="assets/logo.png" alt="Adaptive AI Logo" class="logo" onerror="this.src='https://via.placeholder.com/100?text=Logo'">
     <h1>Adaptive AI – Login & Accessibility Setup</h1>
   </header>
 
@@ -16,21 +17,22 @@
     <!-- Accessibility Mode Selection -->
     <section id="accessibility-selection" aria-label="Accessibility Mode Selection">
       <h2>Select Accessibility Mode</h2>
-      <p class="instructions">Use your keyboard (Tab + Enter) or click a button. Blind users will hear instructions automatically.</p>
+      <p class="instructions">Use Tab and Enter to navigate, or click a button. Blind users: listen for audio instructions. Deaf users: check captions below.</p>
       <div class="button-group">
-        <button id="blind-mode" class="access-button" aria-label="Blind or Visually Impaired Mode" accesskey="1">
-          <span class="icon">👨‍🦯</span> Blind / Visually Impaired
+        <button id="blind-mode" class="access-button" aria-label="Blind or Visually Impaired Mode, press 1" accesskey="1">
+          <span class="icon" aria-hidden="true">👨‍🦯</span> Blind / Visually Impaired
         </button>
-        <button id="deaf-mode" class="access-button" aria-label="Deaf or Hard of Hearing Mode" accesskey="2">
-          <span class="icon">🧏</span> Deaf / Hard of Hearing
+        <button id="deaf-mode" class="access-button" aria-label="Deaf or Hard of Hearing Mode, press 2" accesskey="2">
+          <span class="icon" aria-hidden="true">🧏</span> Deaf / Hard of Hearing
         </button>
-        <button id="mute-mode" class="access-button" aria-label="Mute or Speech Impaired Mode" accesskey="3">
-          <span class="icon">🤐</span> Mute / Speech Impaired
+        <button id="mute-mode" class="access-button" aria-label="Mute or Speech Impaired Mode, press 3" accesskey="3">
+          <span class="icon" aria-hidden="true">🤐</span> Mute / Speech Impaired
         </button>
-        <button id="multiple-mode" class="access-button" aria-label="Multiple Disabilities Mode" accesskey="4">
-          <span class="icon">➕</span> Multiple Disabilities
+        <button id="multiple-mode" class="access-button" aria-label="Multiple Disabilities Mode, press 4" accesskey="4">
+          <span class="icon" aria-hidden="true">➕</span> Multiple Disabilities
         </button>
       </div>
+      <div id="captions" class="captions" aria-live="polite">Welcome! Select an accessibility mode to proceed.</div>
     </section>
 
     <!-- Login Section -->
@@ -39,27 +41,27 @@
       <div class="login-form">
         <label for="phone-input">Phone Number</label>
         <input type="tel" id="phone-input" placeholder="Enter phone number" aria-describedby="phone-instructions">
-        <p id="phone-instructions" class="sr-only">Enter your phone number and press Enter to login with OTP.</p>
-        <button id="otp-login" class="action-button">Login with OTP</button>
-        <button id="guest-login" class="action-button">Continue as Guest</button>
+        <p id="phone-instructions" class="sr-only">Enter your phone number and press Enter to login with OTP. For guest access, press Tab to reach the Continue as Guest button.</p>
+        <button id="otp-login" class="action-button" aria-label="Login with OTP">Login with OTP</button>
+        <button id="guest-login" class="action-button" aria-label="Continue as Guest">Continue as Guest</button>
       </div>
     </section>
 
     <!-- Information Section -->
     <section id="info-section" aria-label="Information Section">
       <h2>Information</h2>
-      <p>Your choice helps Adaptive AI adapt the interface to your needs.</p>
+      <p>Your choice helps Adaptive AI tailor the interface to your accessibility needs.</p>
       <ul>
-        <li><strong>Blind:</strong> Screen reader support, TTS guidance, keyboard navigation, high-contrast text</li>
-        <li><strong>Deaf:</strong> Large visual buttons, captions, optional vibration feedback</li>
-        <li><strong>Mute:</strong> Text input, optional gestures, TTS output for system messages</li>
+        <li><strong>Blind:</strong> Screen reader support, text-to-speech guidance, keyboard navigation, high-contrast text</li>
+        <li><strong>Deaf:</strong> Large visual buttons, captions for feedback, optional vibration alerts</li>
+        <li><strong>Mute:</strong> Text input, gesture-based navigation, text-to-speech for system messages</li>
       </ul>
     </section>
   </main>
 
   <!-- Voice instructions for blind users -->
-  <div id="tts" aria-hidden="true"></div>
+  <div id="tts" class="sr-only" aria-hidden="true"></div>
 
-  <script src="js/script.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
