@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive AI – Login & Accessibility Setup</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Adaptive AI Logo" class="logo">
+    <h1>Adaptive AI – Login & Accessibility Setup</h1>
+  </header>
+
+  <main>
+    <!-- Accessibility Mode Selection -->
+    <section id="accessibility-selection" aria-label="Accessibility Mode Selection">
+      <h2>Select Accessibility Mode</h2>
+      <p class="instructions">Use your keyboard (Tab + Enter) or click a button. Blind users will hear instructions automatically.</p>
+      <div class="button-group">
+        <button id="blind-mode" class="access-button" aria-label="Blind or Visually Impaired Mode" accesskey="1">
+          <span class="icon">👨‍🦯</span> Blind / Visually Impaired
+        </button>
+        <button id="deaf-mode" class="access-button" aria-label="Deaf or Hard of Hearing Mode" accesskey="2">
+          <span class="icon">🧏</span> Deaf / Hard of Hearing
+        </button>
+        <button id="mute-mode" class="access-button" aria-label="Mute or Speech Impaired Mode" accesskey="3">
+          <span class="icon">🤐</span> Mute / Speech Impaired
+        </button>
+        <button id="multiple-mode" class="access-button" aria-label="Multiple Disabilities Mode" accesskey="4">
+          <span class="icon">➕</span> Multiple Disabilities
+        </button>
+      </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login-section" aria-label="Login Section">
+      <h2>Login</h2>
+      <div class="login-form">
+        <label for="phone-input">Phone Number</label>
+        <input type="tel" id="phone-input" placeholder="Enter phone number" aria-describedby="phone-instructions">
+        <p id="phone-instructions" class="sr-only">Enter your phone number and press Enter to login with OTP.</p>
+        <button id="otp-login" class="action-button">Login with OTP</button>
+        <button id="guest-login" class="action-button">Continue as Guest</button>
+      </div>
+    </section>
+
+    <!-- Information Section -->
+    <section id="info-section" aria-label="Information Section">
+      <h2>Information</h2>
+      <p>Your choice helps Adaptive AI adapt the interface to your needs.</p>
+      <ul>
+        <li><strong>Blind:</strong> Screen reader support, TTS guidance, keyboard navigation, high-contrast text</li>
+        <li><strong>Deaf:</strong> Large visual buttons, captions, optional vibration feedback</li>
+        <li><strong>Mute:</strong> Text input, optional gestures, TTS output for system messages</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Voice instructions for blind users -->
+  <div id="tts" aria-hidden="true"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
